@@ -16,10 +16,10 @@ module.exports = {
             .post(async (request, response, next) => {
                 try {
                     await schemaSuit.ValidateSchema(loginValidator, { ...request.headers, ...request.body });
+                    const authBiz = new AuthBiz();
+                    const result = await authBiz.login({...request.headers, ...request.body});
                     response.json({
-                        data: {
-                            
-                        }
+                        data: result
                     }, 'login successful!');
                 } catch (error) {
                     response.json({

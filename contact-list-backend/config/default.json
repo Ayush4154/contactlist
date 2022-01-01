@@ -3,5 +3,8 @@
         "mongoDB": {
             "url": "mongodb+srv://Ayush123:ayush123@cluster0.hbvqc.mongodb.net/contactlist?retryWrites=true&w=majority"
         }
+    },
+    "jwt": {
+        "privateKey": "ThisIsARandomPrivateSecretKey" 
     }   
 }

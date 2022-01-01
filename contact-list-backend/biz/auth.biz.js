@@ -1,15 +1,29 @@
 const mongo = require('./../db/mongo');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 
+const {
+    InvalidUserException
+} = require('./../exceptions/invalid-user.exception');
 class AuthBiz {
     
     constructor() {
 
     }
 
-    login() {
+    login(data) {
         return new Promise(async (resolve, reject) => {
             try {
-                
+               const {
+                   token
+               } = data;
+
+               try {
+                   jwt.verify(token, config.get('jwt.privateKey'));
+                   
+               } catch (error) {
+                   throw new InvalidUserException('Token Invalid');
+               }
             } catch (error) {
                 reject(error);
             }
