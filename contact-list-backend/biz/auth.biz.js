@@ -1,12 +1,12 @@
 const mongo = require('./../db/mongo');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-
+const cryptoUtil = require('./../helper/crypto');
 const {
     InvalidUserException
 } = require('./../exceptions/invalid-user.exception');
 class AuthBiz {
-    
+
     constructor() {
 
     }
@@ -14,18 +14,23 @@ class AuthBiz {
     login(data) {
         return new Promise(async (resolve, reject) => {
             try {
-               const {
-                   token
-               } = data;
-
-               try {
-                   jwt.verify(token, config.get('jwt.privateKey'));
-                   
-               } catch (error) {
-                   throw new InvalidUserException('Token Invalid');
-               }
+                const {
+                    token,
+                    username,
+                    passwordHash,
+                } = data;
+                try {
+                    // do something with token
+                } catch (error) {
+                    throw new InvalidUserException('Token Invalid');
+                }
+                const user = await mongo.findOne('user', { email: username, password: passwordHash });
+                return resolve({
+                    userExist: true,
+                    userId: user._id.toString(),
+                });
             } catch (error) {
-                reject(error);
+                return reject(error);
             }
         });
     }
@@ -39,7 +44,7 @@ class AuthBiz {
                         password
                     }
                 }, true);
-                
+
                 return resolve({
                     userCreated: true,
                     message: 'User created!',

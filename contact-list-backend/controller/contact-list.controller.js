@@ -88,7 +88,7 @@ module.exports = {
                     const contactInfo = new ContactInfoBiz();
                     const result = await contactInfo.fetchContactInfo(userId);
                     response.json({
-                        ...result
+                        data: result.contactList
                     }, 'Success');
                 } catch (error) {
                     next(error);

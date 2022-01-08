@@ -5,6 +5,7 @@
         }
     },
     "jwt": {
-        "privateKey": "ThisIsARandomPrivateSecretKey" 
+        "privateKey": "Ayush@Secret",
+        "secretKey": "vOVH6sdmjRRHYABHBAHBIqCc7vOVH6sd" 
     }   
 }

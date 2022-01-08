@@ -24,7 +24,7 @@ class ContactInfo {
         });
     }
 
-    addContactInfo(userId, fullName, email, password) {
+    addContactInfo(userId, fullName, email, phoneNo) {
         return new Promise(async (resolve, reject) => {
             try {
                 const userExist = await mongo.findOne('user', { _id: new ObjectId(userId) });
@@ -39,7 +39,7 @@ class ContactInfo {
                         userId,
                         fullName,
                         email,
-                        password
+                        phoneNo
                     });
                     return resolve({
                         message: 'contact created successfully!'

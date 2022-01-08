@@ -10,6 +10,7 @@ const mongoose = require ('mongoose');
 const bodyParser = require ('body-parser');
 app.use(helmet());
 app.use(cors());
+
 app.use(bodyParser.json());
 const url = config.get('DB.mongoDB.url');
 // console.log(url);

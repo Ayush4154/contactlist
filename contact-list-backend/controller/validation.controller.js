@@ -40,10 +40,13 @@ module.exports = {
                     const authBiz = new AuthBiz();
                     const result = await authBiz.signup(email, password);
                     response.json({
-                        ...result
+                        data: result
                     }, 'login successful!');
                 } catch (error) {
-                    next(error);
+                    response.json({
+                        code: 'ERROR',
+                        data: error
+                    }, 'ERROR');
                 }
             });
     },

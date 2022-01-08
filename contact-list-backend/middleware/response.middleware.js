@@ -18,7 +18,7 @@ module.exports = async (request, response, next) => {
 				newResponseData = {
 					success: true,
 					message: message || '',
-					data,
+					data: data.data,
 				};
 			}
 
